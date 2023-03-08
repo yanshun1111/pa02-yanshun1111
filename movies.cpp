@@ -21,7 +21,7 @@ bool compA(movies a, movies b){
 }
 
 bool compR(movies a, movies b){
-    return (a.rating > b.rating) && (a.name < b.name) ;
+    return (a.rating > b.rating) || (a.name < b.name) ;
 }
 
 void sortAlphabetical(vector<movies> &space){
