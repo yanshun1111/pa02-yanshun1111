@@ -67,10 +67,8 @@ int main(int argc, char** argv){
   }
 
   for (int i = 0; i < result.size(); i++){
-      sortAlphabetical(result[i]);
       sortRating(result[i]);
-      printElements(result[i]);
-      cout << endl;
+      if (result[i].size() != 0) printElements(result[i]);
   }
 
   
