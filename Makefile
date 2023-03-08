@@ -1,5 +1,5 @@
 #Makefile
-CXXFLAGS = -std=c++11 -g -Wall -O0
+CXXFLAGS = -std=c++11 -g -O0
 
 all: runMovies
 
