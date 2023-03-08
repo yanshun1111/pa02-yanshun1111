@@ -68,7 +68,10 @@ int main(int argc, char** argv){
 
   for (int i = 0; i < result.size(); i++){
       sortRating(result[i]);
-      if (result[i].size() != 0) printElements(result[i]);
+      if (result[i].size() != 0) {
+          printElements(result[i]);
+          cout << endl;
+      }
   }
 
   

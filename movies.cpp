@@ -41,6 +41,5 @@ void printElements(vector<movies> &space){
     for (int i = 0; i < space.size(); i++){
         cout << space.at(i).name << ", " << fixed << setprecision(1) << space.at(i).rating << endl;
     }
-    cout << endl;
 }
 
