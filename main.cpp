@@ -57,7 +57,7 @@ int main(int argc, char** argv){
   vector<vector<movies>> result (argc-2, vector<movies>{});
   vector<string> prefixes (argc-2, "");
   for (int i = 2; i < argc; i++){
-     prefixes.[i-2] = argv[i];
+     prefixes[i-2] = argv[i];
      for (int j = 0; j < storage.size(); j++){
         if (storage[j].name.find(prefixes[i-2]) == 0){
             result[i-2].push_back(storage[j]);
