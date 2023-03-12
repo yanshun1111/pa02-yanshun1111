@@ -52,34 +52,38 @@ int main(int argc, char** argv){
         return 0;
   }
 
-  //  For each prefix,
-  //  Find all movies that have that prefix and store them in an appropriate data structure
-  vector<vector<movies>> result (argc-2, vector<movies>{});
-  vector<string>prefixes;
-  for (int i = 2; i < argc; i++){
-     for (int j = 0; j < storage.size(); j++){
-        if (storage[j].name.find(argv[i]) == 0){
-            result[i-2].push_back(storage[j]);
+  //  For each prefix, Find all movies that have that prefix and store them in an appropriate data structure
+  vector<movies> bestMovies;
+  vector<string> prefixes; //m
+  for (int i = 2; i < argc; i++){ //m
+    vector<movies> preMovies; //1
+     for (size_t j = 0; j < storage.size(); j++){ //n
+        if (storage[j].name.find(argv[i]) == 0){ //n
+            preMovies.push_back(storage[j]); //k
         }
      }
-     if (result[i-2].size() == 0){
-        //  If no movie with that prefix exists print the following message
-        cout << "No movies found with prefix "<< argv[i] << endl << endl;
+     //n^2k
+     //  If no movie with that prefix exists print the following message
+     if (preMovies.size() == 0){ //1
+        cout << "No movies found with prefix "<< argv[i] << endl << endl; //1
         }
+    //1
     else{
-        prefixes.push_back(argv[i]);
-        sortRating(result[i-2]);
-        printElements(result[i-2]);
+        prefixes.push_back(argv[i]); //1
+        sortRating(preMovies); //k(log k)
+        bestMovies.push_back(preMovies[0]); //k
+        printElements(preMovies);//k
         cout << endl;
     }
+    //2k+k(log k)
   }
+  //m+1+ k + m(n^2k+2k+k(log k)), simplify O(mn^2k + mk log k), simplify to O(mkn^2)
 
-
-  //  For each prefix,
-  //  Print the highest rated movie with that prefix if it exists.
-  for (int i = 0; i < prefixes.size(); i++){
-      cout << "Best movie with prefix " << prefixes[i] << " is: " << result[i].at(0).name << " with rating " << std::fixed << std::setprecision(1) << result[i].at(0).rating << endl;
+  //  For each prefix, Print the highest rated movie with that prefix if it exists.
+  for (size_t i = 0; i < bestMovies.size(); i++){ //k
+      cout << "Best movie with prefix " << prefixes[i] << " is: " << bestMovies[i].name << " with rating " << std::fixed << std::setprecision(1) << bestMovies[i].rating << endl; //1
   }
+  //k
   
   return 0;
 }
@@ -87,8 +91,13 @@ int main(int argc, char** argv){
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
 /*
 
+time complexity:
+m+1+ k + m(n^2k+2k+k(log k)), simplify O(mn^2k + mk log k), simplify to O(mkn^2)
+
+space complexity:
 
 
+I did it for 
 */
 
 bool parseLine(string &line, string &movieName, double &movieRating) {
