@@ -54,11 +54,10 @@ int main(int argc, char** argv){
 
   //  For each prefix,
   //  Find all movies that have that prefix and store them in an appropriate data structure
-  vector<vector<movies>> result;
-  vector<string> prefixes;
+  vector<vector<movies>> result (argc-2, vector<movies>{});
+  vector<string> prefixes (argc-2, "");
   for (int i = 2; i < argc; i++){
-     prefixes.push_back(argv[i]);
-     result.push_back(vector<movies>{});
+     prefixes.[i-2] = argv[i];
      for (int j = 0; j < storage.size(); j++){
         if (storage[j].name.find(prefixes[i-2]) == 0){
             result[i-2].push_back(storage[j]);
@@ -95,6 +94,11 @@ for (int i = 2; i < argc; i++){
 }
 
 /* Add your run time analysis for part 3 of the assignment here as commented block*/
+/*
+
+
+
+*/
 
 bool parseLine(string &line, string &movieName, double &movieRating) {
     if (line.length() <= 0) return false;
